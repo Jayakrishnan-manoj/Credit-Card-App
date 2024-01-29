@@ -14,8 +14,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -27,26 +29,43 @@ fun CreditCard(cardInfo: CardInfo) {
         elevation = CardDefaults.cardElevation(8.dp)
 
     ) {
-        Image(
-            painter = painterResource(id = cardInfo.backgroundImage),
-            contentDescription = "Card Background",
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds,
-        )
 
-        Box(modifier = Modifier.padding(16.dp)) {
+        Box() {
             Image(
-                painter = painterResource(id = cardInfo.providerImage),
-                contentDescription = "Provider image",
-                modifier = Modifier
-                    .width(86.dp)
-                    .align(Alignment.TopStart)
+                painter = painterResource(id = cardInfo.backgroundImage),
+                contentDescription = "Card Background",
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.FillBounds,
             )
-            Column(modifier = Modifier.align(Alignment.BottomStart)) {
 
-                Text(text = cardInfo.cardNumber, fontSize = 16.sp, letterSpacing = 1.2.sp)
-                Text(text = cardInfo.cardHolder, fontSize = 16.sp, letterSpacing = 1.2.sp)
+            Box(modifier = Modifier
+                .padding(16.dp)
+                .fillMaxSize()) {
+                Image(
+                    painter = painterResource(id = cardInfo.providerImage),
+                    contentDescription = "Provider image",
+                    modifier = Modifier
+                        .width(86.dp)
+                        .align(Alignment.TopStart)
+                )
+                Column(modifier = Modifier.align(Alignment.BottomStart)) {
+
+                    Text(
+                        text = cardInfo.cardNumber,
+                        fontSize = 16.sp,
+                        letterSpacing = 1.2.sp,
+                        color = Color.White
+                    )
+                    Text(
+                        text = cardInfo.cardHolder,
+                        fontSize = 16.sp,
+                        letterSpacing = 1.2.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                }
             }
+
         }
     }
 }
